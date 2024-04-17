@@ -1,5 +1,3 @@
-package a4;
-
 import java.util.ArrayList;
 
 class Course {
