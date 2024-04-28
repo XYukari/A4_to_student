@@ -1,8 +1,4 @@
-import java.awt.geom.Arc2D;
-import java.util.*;
-
-import static java.util.Collections.min;
-import static java.util.Collections.sort;
+import java.util.ArrayList;
 
 public class CourseManager {
     /**
@@ -215,9 +211,10 @@ public class CourseManager {
             var enrollStudent = course.getEnrollStudent();
             var credits = course.getCredits();
 
+            var temp = new ArrayList<>(enrollStudent);
             enrollStudent.sort((s1, s2) -> {
-                int n1 = enrollStudent.indexOf(s1);
-                int n2 = enrollStudent.indexOf(s2);
+                int n1 = temp.indexOf(s1);
+                int n2 = temp.indexOf(s2);
                 return credits.get(n2) - credits.get(n1);
             });
             credits.sort((c1, c2) -> c2 - c1);

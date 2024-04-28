@@ -154,7 +154,7 @@ class CourseManagerTest {
         assertFalse(course1.getSuccessStudents().contains(student1)); // a4.Student 1 has lower credits than a4.Student 2
         assertTrue(course1.getSuccessStudents().size() <= course1.getMaxCapacity());
 
-        // Student3 dropped the course so they should not appear in the success list
+        // Student3 dropped the course, so they should not appear in the success list
         assertFalse(course2.getSuccessStudents().contains(student3));
     }
 
@@ -222,6 +222,7 @@ class CourseManagerTest {
     }
 
     @Test
+    @DisplayName("test20()")
     void test20() {
         student1.enrollCourse("c001", 20);
         student2.enrollCourse("c001", 10);
@@ -237,6 +238,20 @@ class CourseManagerTest {
         assertTrue(course1.getSuccessStudents().contains(student1));
         assertFalse(course1.getSuccessStudents().contains(student2));
         assertFalse(course1.getSuccessStudents().contains(student3));
+    }
+
+    @Test
+    void test21() {
+        student1.enrollCourse("c001", 50);
+        assertTrue(student1.enrollCourse("c002", 50));
+        courseManager.finalizeEnrollments();
+    }
+
+    @Test
+    void test22() {
+        student1.enrollCourse("c001", 50);
+        assertFalse(student1.enrollCourse("c002", 100));
+        courseManager.finalizeEnrollments();
     }
 }
 
